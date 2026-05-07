@@ -98,7 +98,7 @@ def fire_weapons(args, projected_states):
             repetitions = custom_weapon.get('repetitions')
         
         # Set HUD mode
-        change_hud_mode({'hud mode': 'combat' if is_combat else 'analysis'}, projected_states)
+        change_hud_mode({'hud_mode': 'combat' if is_combat else 'analysis'}, projected_states)
         
         # Set fire group
         try:
@@ -114,7 +114,7 @@ def fire_weapons(args, projected_states):
         
     # Handle discovery scanner
     elif weapon_type == 'discovery_scanner':
-        change_hud_mode({'hud mode': 'analysis'}, projected_states)
+        change_hud_mode({'hud_mode': 'analysis'}, projected_states)
         # Allow per-call overrides, fallback to configured globals
         fg_value = args.get('discoveryFiregroup', discovery_firegroup_var)
         primary_flag = args.get('discoveryPrimary', discovery_primary_var)
@@ -130,7 +130,7 @@ def fire_weapons(args, projected_states):
     
     # Handle standard primary/secondary
     else:
-        change_hud_mode({'hud mode': 'combat'}, projected_states)
+        change_hud_mode({'hud_mode': 'combat'}, projected_states)
         if weapon_type == 'secondary':
             key_name = 'SecondaryFire'
             weapon_desc = 'secondary weapons'
