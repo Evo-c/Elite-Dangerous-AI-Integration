@@ -301,7 +301,7 @@ def toggle_wing_nav_lock(args, projected_states):
 
 
 def change_hud_mode(args, projected_states):
-    mode = args.get('hud mode', 'toggle').lower()
+    mode = args.get('hud_mode', 'toggle').lower()
     current_status = get_state_dict(projected_states, 'CurrentStatus')
     if current_status.get('flags', {}).get('HudInAnalysisMode'):
         current_hud_mode = "analysis"
@@ -1778,21 +1778,21 @@ def register_actions(actionManager: ActionManager, eventManager: EventManager, p
     actionManager.registerAction('Change_ship_HUD_mode', "Switch to combat or analysis mode", {
         "type": "object",
         "properties": {
-            "hud mode": {
+            "hud_mode": {
                 "type": "string",
                 "description": "mode to switch to",
                 "enum": ["combat", "analysis", "toggle"],
             }
         },
-        "required": ["hud mode"],
+        "required": ["hud_mode"],
     }, change_hud_mode, 'mainship', permission='Change_ship_HUD_mode', cache_prefill={
-        "combat mode": {"hud mode": "combat"},
-        "analysis mode": {"hud mode": "analysis"},
-        "switch to combat": {"hud mode": "combat"},
-        "switch to analysis": {"hud mode": "analysis"},
-        "toggle hud mode": {"hud mode": "toggle"},
-        "hud mode": {"hud mode": "toggle"},
-        "change hud": {"hud mode": "toggle"},
+        "combat mode": {"hud_mode": "combat"},
+        "analysis mode": {"hud_mode": "analysis"},
+        "switch to combat": {"hud_mode": "combat"},
+        "switch to analysis": {"hud_mode": "analysis"},
+        "toggle hud mode": {"hud_mode": "toggle"},
+        "hud mode": {"hud_mode": "toggle"},
+        "change hud": {"hud_mode": "toggle"},
     })
 
     actionManager.registerAction('shipSpotLightToggle', "Toggle ship spotlight", {
