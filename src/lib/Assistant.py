@@ -846,7 +846,7 @@ class Assistant:
                     else:
                         reasons.append(event.kind)
             
-            use_tools = self.config["tools_var"] and ('user' in reasons or 'tool' in reasons)
+            use_tools = self.config["tools_var"] and any(e.kind in ['user', 'tool', 'game'] for e in new_events)
 
             current_status = get_state_dict(projected_states, "CurrentStatus")
             flags = current_status.get("flags", {})
